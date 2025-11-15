@@ -522,10 +522,8 @@ def get_disturbance_force_base():
     left_stick_y = apply_axis_calibration(axis_mapping[1], raw_left_stick_y)
     
     # 应用默认方向（如果未校准，保持原有逻辑）
-    if gamepad_calibration is None:
-        # 未校准时的默认处理
-        left_stick_x = -left_stick_x
-        left_stick_y = -left_stick_y
+    left_stick_x = -left_stick_x
+    left_stick_y = -left_stick_y
     # 如果已校准，方向已在 apply_axis_calibration 中处理
     
     # 应用死区
