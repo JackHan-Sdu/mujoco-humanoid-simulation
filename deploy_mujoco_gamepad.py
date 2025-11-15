@@ -54,15 +54,10 @@ if __name__ == "__main__":
         cmd_scale = np.array(config["cmd_scale"], dtype=np.float32)
 
         num_actions = config["num_actions"]
-        # 从配置中读取是否包含相位，如果没有则使用默认值 False
-        include_phase = config.get("include_phase_in_obs", False)
         # 如果有相位，在基础观测维度上加2
         num_obs = config["num_obs"]
-        if include_phase:
-            num_obs += 2
         print("num_actions = ", num_actions)
         print("num_obs = ", num_obs)
-        print("include_phase_in_obs = ", include_phase)
         
         cmd = np.array(config["cmd_init"], dtype=np.float32)
 
@@ -173,38 +168,12 @@ if __name__ == "__main__":
                 gravity_orientation = get_gravity_orientation(quat)
                 omega = omega * ang_vel_scale
 
-                walk_period = 0.8
-                run_period = 0.7
-
-                vx = d.qvel[0]   # base linear velocity in x
-                vy = d.qvel[1]   # base linear velocity in y
-                wz = d.qvel[5]   # base angular velocity around z
-                planar_twist_norm = np.linalg.norm([vx, vy, wz])
-                # 判断是否处于静止
-                if (planar_twist_norm > 0.2) or (np.linalg.norm(cmd) > 0.1):
-                    speed_cmd = abs(cmd[0])
-                    period = run_period if speed_cmd > 1.1 else walk_period
-                    phase += (simulation_dt * control_decimation) / period
-                    phase %= 1.0
-                else:
-                    phase *= 0.5
-                    if phase < 1e-3:   # 阈值截断
-                        phase = 0.0
-
                 obs[:3] = omega
                 obs[3:6] = gravity_orientation
                 obs[6:9] = cmd * cmd_scale
                 obs[9:9 + num_actions] = qj
                 obs[9 + num_actions:9 + 2 * num_actions] = dqj
                 obs[9 + 2 * num_actions:9 + 3 * num_actions] = action
-                
-                # 根据配置决定是否包含相位
-                if include_phase:
-                    # 计算正余弦相位
-                    sin_phase = np.sin(2 * np.pi * phase)
-                    cos_phase = np.cos(2 * np.pi * phase)
-                    # 将相位添加到观测中
-                    obs[9 + 3 * num_actions:9 + 3 * num_actions + 2] = np.array([sin_phase, cos_phase])
                 
                 obs_tensor = torch.from_numpy(obs).unsqueeze(0)
                 # policy inference

@@ -33,7 +33,6 @@ action_scale: 0.25
 cmd_scale: [2.0, 2.0, 0.25]
 num_actions: 21
 num_obs: 72
-include_phase_in_obs: False
 
 cmd_init: [0., 0, 0]
 # gamepad_type: betop #logitech
