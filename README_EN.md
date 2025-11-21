@@ -1,7 +1,3 @@
-**Languages**: [English](#) | [中文](README_CN.md)
-
----
-
 # MuJoCo Humanoid Robot Simulation Control
 
 This project uses MuJoCo physics engine for humanoid robot simulation and real-time control via gamepad.
@@ -374,3 +370,4 @@ For questions or suggestions, please check code comments or contact the developm
 ---
 
 **Enjoy!** 🚀
+
