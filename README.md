@@ -14,11 +14,11 @@ Watch the demonstration video to see the robot in action:
 
 <div align="center">
 
-<iframe src="//player.bilibili.com/player.html?bvid=BV1jx2YBqEPD&page=1&high_quality=1&danmaku=0" width="800" height="450" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+### ▶️ [Watch Demo Video on Bilibili](https://www.bilibili.com/video/BV1jx2YBqEPD/)
+
+**Direct Link**: https://www.bilibili.com/video/BV1jx2YBqEPD/
 
 </div>
-
-> 💡 **Note**: If the video player doesn't load, please visit: [Watch on Bilibili](https://www.bilibili.com/video/BV1jx2YBqEPD/)
 
 ## Core Features
 

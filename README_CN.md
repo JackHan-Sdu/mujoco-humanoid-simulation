@@ -14,11 +14,11 @@
 
 <div align="center">
 
-<iframe src="//player.bilibili.com/player.html?bvid=BV1jx2YBqEPD&page=1&high_quality=1&danmaku=0" width="800" height="450" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+### ▶️ [在 Bilibili 观看演示视频](https://www.bilibili.com/video/BV1jx2YBqEPD/)
+
+**视频链接**: https://www.bilibili.com/video/BV1jx2YBqEPD/
 
 </div>
-
-> 💡 **提示**: 如果视频播放器无法加载，请访问: [在 Bilibili 观看](https://www.bilibili.com/video/BV1jx2YBqEPD/)
 
 ## 核心功能
 
