@@ -12,7 +12,13 @@
 
 观看演示视频了解机器人实际运行效果：
 
-**Bilibili**: [观看演示视频](https://www.bilibili.com/video/BV1jx2YBqEPD/)
+<div align="center">
+
+<iframe src="//player.bilibili.com/player.html?bvid=BV1jx2YBqEPD&page=1&high_quality=1&danmaku=0" width="800" height="450" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+</div>
+
+> 💡 **提示**: 如果视频播放器无法加载，请访问: [在 Bilibili 观看](https://www.bilibili.com/video/BV1jx2YBqEPD/)
 
 ## 核心功能
 
@@ -69,9 +75,9 @@
 
 1. **插入手柄**: 将游戏手柄插入主机（电脑）
 2. **配置环境**: 打开终端，配置好环境（默认的强化学习环境即可）
-3. **运行程序**: 执行命令启动仿真
+3. **运行程序**: 执行命令启动仿真（必须指定配置文件）
    ```bash
-   python deploy_mujoco_gamepad.py
+   python deploy_mujoco_gamepad.py e3.yaml
    ```
 4. **开启视角跟随**: 摁手柄 **Y键** 开启视角跟随模式
 5. **控制机器人**:
@@ -137,14 +143,11 @@ python calibrate_gamepad.py
 运行仿真程序：
 
 ```bash
-# 使用默认配置文件 e2_21dof.yaml
-python deploy_mujoco_gamepad.py
-
-# 或者指定其他配置文件
-python deploy_mujoco_gamepad.py your_config.yaml
+# 使用 e3.yaml 配置文件（必须指定）
+python deploy_mujoco_gamepad.py e3.yaml
 ```
 
-**注意**: 如果不指定配置文件，程序默认使用 `configs/e2_21dof.yaml`。配置文件位于 `configs/` 目录下。
+**注意**: 运行程序时**必须**指定配置文件 `e3.yaml`。配置文件位于 `configs/` 目录下。
 
 #### 2.1 启动仿真
 
@@ -229,16 +232,16 @@ python deploy_mujoco_gamepad.py your_config.yaml
 
 ## 配置文件说明
 
-配置文件位于 `configs/` 目录下，例如 `e2_21dof.yaml`。
+配置文件位于 `configs/` 目录下，例如 `e3.yaml`。
 
 ### 主要配置项
 
 ```yaml
 # 策略文件路径
-policy_path: "policy/motion_lstm.pt"
+policy_path: "policy/motion_5000.pt"
 
 # 机器人模型文件路径
-xml_path: "model/e2/scene_terrain.xml"
+xml_path: "model/e3/scene_terrain.xml"
 
 # 仿真参数
 simulation_duration: 600.0  # 仿真持续时间（秒）
@@ -349,14 +352,14 @@ deploy_mujoco/
 ├── calibrate_gamepad.py              # 游戏手柄校准脚本
 ├── deploy_mujoco_gamepad.py          # 主仿真程序
 ├── configs/                          # 配置文件目录
-│   └── e2_21dof.yaml                 # 机器人配置文件
+│   └── e3.yaml                       # 机器人配置文件
 ├── model/                            # 机器人模型目录
-│   └── e2/
-│       ├── e2_21Dof.xml              # 机器人模型文件
+│   └── e3/
+│       ├── e3.xml                    # 机器人模型文件
 │       ├── scene_terrain.xml         # 场景文件
 │       └── meshes/                   # 网格文件
 ├── policy/                           # 策略文件目录
-│   └── motion_lstm.pt                # 训练好的策略模型
+│   └── motion_5000.pt                # 训练好的策略模型
 ├── utils/                            # 工具函数目录
 │   ├── gamepad_utils.py              # 游戏手柄工具
 │   ├── mode_utils.py                 # 模式控制工具

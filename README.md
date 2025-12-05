@@ -12,7 +12,13 @@ This project uses MuJoCo physics engine for humanoid robot simulation and real-t
 
 Watch the demonstration video to see the robot in action:
 
-**Bilibili**: [Watch Demo Video](https://www.bilibili.com/video/BV1jx2YBqEPD/)
+<div align="center">
+
+<iframe src="//player.bilibili.com/player.html?bvid=BV1jx2YBqEPD&page=1&high_quality=1&danmaku=0" width="800" height="450" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+</div>
+
+> 💡 **Note**: If the video player doesn't load, please visit: [Watch on Bilibili](https://www.bilibili.com/video/BV1jx2YBqEPD/)
 
 ## Core Features
 
@@ -68,9 +74,9 @@ The program includes **Walker Taishan** omnidirectional humanoid walking with th
 
 1. **Connect Gamepad**: Insert the gamepad into your computer
 2. **Configure Environment**: Open terminal and configure the environment (default reinforcement learning environment is sufficient)
-3. **Run Program**: Execute the command to start simulation
+3. **Run Program**: Execute the command to start simulation (must specify config file)
    ```bash
-   python deploy_mujoco_gamepad.py
+   python deploy_mujoco_gamepad.py e3.yaml
    ```
 4. **Enable Camera Tracking**: Press **Y button** on gamepad to enable camera tracking mode
 5. **Control Robot**:
@@ -136,14 +142,11 @@ Calibration results are automatically saved to corresponding JSON files:
 Run the simulation program:
 
 ```bash
-# Use default config file e2_21dof.yaml
-python deploy_mujoco_gamepad.py
-
-# Or specify another config file
-python deploy_mujoco_gamepad.py your_config.yaml
+# Run with e3.yaml config file (required)
+python deploy_mujoco_gamepad.py e3.yaml
 ```
 
-**Note**: If no config file is specified, the program defaults to `configs/e2_21dof.yaml`. Config files are located in the `configs/` directory.
+**Note**: You **must** specify the config file `e3.yaml` when running the program. Config files are located in the `configs/` directory.
 
 #### 2.1 Start Simulation
 
@@ -228,16 +231,16 @@ Use the gamepad to control robot movement. See [Gamepad Control Guide](#gamepad-
 
 ## Configuration File
 
-Configuration files are located in the `configs/` directory, for example `e2_21dof.yaml`.
+Configuration files are located in the `configs/` directory, for example `e3.yaml`.
 
 ### Main Configuration Items
 
 ```yaml
 # Policy file path
-policy_path: "policy/motion_lstm.pt"
+policy_path: "policy/motion_5000.pt"
 
 # Robot model file path
-xml_path: "model/e2/scene_terrain.xml"
+xml_path: "model/e3/scene_terrain.xml"
 
 # Simulation parameters
 simulation_duration: 600.0  # Simulation duration (seconds)
@@ -348,14 +351,14 @@ deploy_mujoco/
 ├── calibrate_gamepad.py              # Gamepad calibration script
 ├── deploy_mujoco_gamepad.py          # Main simulation program
 ├── configs/                          # Configuration file directory
-│   └── e2_21dof.yaml                 # Robot configuration file
+│   └── e3.yaml                       # Robot configuration file
 ├── model/                            # Robot model directory
-│   └── e2/
-│       ├── e2_21Dof.xml              # Robot model file
+│   └── e3/
+│       ├── e3.xml                    # Robot model file
 │       ├── scene_terrain.xml         # Scene file
 │       └── meshes/                   # Mesh files
 ├── policy/                           # Policy file directory
-│   └── motion_lstm.pt                # Pre-trained policy model
+│   └── motion_5000.pt                # Pre-trained policy model
 ├── utils/                            # Utility function directory
 │   ├── gamepad_utils.py              # Gamepad utilities
 │   ├── mode_utils.py                 # Mode control utilities
